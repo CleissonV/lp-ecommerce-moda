@@ -12,13 +12,31 @@ const products = [
   { name: 'Conjunto Cropped', price: 'R$ 1.650', original: null, tag: 'Exclusivo', color: 'Marfim', gradient: 'from-yellow-50 to-amber-50', emoji: '✨', sizes: ['P', 'M'] },
 ]
 
+const productImages = [
+  'https://images.unsplash.com/photo-1603189343302-e603f7add05a?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1574015974293-817f0ebebb74?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1596993100471-c3905dafa78e?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80&auto=format&fit=crop',
+]
+
 const instaGrid = [
-  { gradient: 'from-rose-100 to-pink-100', emoji: '🌸', likes: '2.4k' },
-  { gradient: 'from-stone-200 to-amber-100', emoji: '🌿', likes: '1.8k' },
-  { gradient: 'from-amber-50 to-yellow-50', emoji: '☀️', likes: '3.1k' },
-  { gradient: 'from-gray-800 to-gray-900', emoji: '🖤', likes: '4.2k' },
-  { gradient: 'from-blue-50 to-indigo-50', emoji: '💫', likes: '2.9k' },
-  { gradient: 'from-green-50 to-emerald-100', emoji: '🌿', likes: '1.6k' },
+  { likes: '2.4k' },
+  { likes: '1.8k' },
+  { likes: '3.1k' },
+  { likes: '4.2k' },
+  { likes: '2.9k' },
+  { likes: '1.6k' },
+]
+
+const lookbookImages = [
+  'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1544441893-675973e31985?w=400&q=80&auto=format&fit=crop',
 ]
 
 const storyImages = [
@@ -55,10 +73,24 @@ const ProductCard = ({ product, index }) => {
       transition={{ duration: 0.7, delay: index * 0.1 }}
       className="product-card cursor-pointer group"
     >
-      <div className={`aspect-[3/4] bg-gradient-to-br ${product.gradient} relative flex items-center justify-center mb-4`}>
-        <span className="product-img text-7xl">{product.emoji}</span>
+      <div className="aspect-[3/4] relative overflow-hidden mb-4">
+        <img
+          src={productImages[index % productImages.length]}
+          alt={product.name}
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+        />
 
-        <div className="product-overlay absolute inset-0 bg-[#111]/40 flex items-end p-6">
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileHover={{ opacity: 1, y: 0 }}
+            className="text-white text-sm font-medium tracking-widest uppercase border border-white/50 px-6 py-2 opacity-0 group-hover:opacity-100 transition-all duration-500"
+          >
+            Ver Produto
+          </motion.span>
+        </div>
+
+        <div className="product-overlay absolute inset-0 bg-[#111]/40 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <button className="w-full py-3 bg-white text-[#111] text-xs tracking-widest uppercase font-sans font-medium hover:bg-[#f5f0e8] transition-colors">
             Adicionar ao Carrinho
           </button>
@@ -115,12 +147,16 @@ const InstaItem = ({ item, index }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`aspect-square bg-gradient-to-br ${item.gradient} flex items-center justify-center relative group cursor-pointer overflow-hidden`}
+      className="aspect-square relative group cursor-pointer overflow-hidden"
     >
-      <span className="text-4xl">{item.emoji}</span>
+      <img
+        src={lookbookImages[index % lookbookImages.length]}
+        alt={`lookbook ${index + 1}`}
+        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+      />
       <div className="absolute inset-0 bg-[#111]/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
         <FaInstagram className="text-white" size={20} />
-        <span className="text-white text-xs font-sans">❤️ {item.likes}</span>
+        <span className="text-white text-xs font-sans">&#10084; {item.likes}</span>
       </div>
     </motion.div>
   )
@@ -284,8 +320,13 @@ export default function App() {
             transition={{ duration: 1.2, delay: 0.4 }}
             className="relative hidden lg:block"
           >
-            <div className="aspect-[3/4] bg-gradient-to-br from-[#e8e2d8] to-[#d4c8b8] flex items-center justify-center relative">
-              <span className="text-[120px]">👗</span>
+            <div className="relative h-[80vh] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1675186049419-d48f4b28fe7c?w=1200&q=80&auto=format&fit=crop"
+                alt="LUMIERE editorial"
+                className="w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f7]/80 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-sm p-4">
                 <p className="text-[#9a8c6e] text-xs tracking-widest uppercase font-sans mb-1">Nova Chegada</p>
                 <p className="font-serif text-lg text-[#111]">Vestido Seda Midi</p>
@@ -447,8 +488,13 @@ export default function App() {
       </section>
 
       {/* ── Newsletter ── */}
-      <section className="py-24 bg-[#111]">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="py-24 bg-[#111] relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80&auto=format&fit=crop"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+        <div className="max-w-2xl mx-auto px-6 text-center relative z-10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
