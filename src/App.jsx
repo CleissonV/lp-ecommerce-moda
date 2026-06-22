@@ -347,7 +347,7 @@ export default function App() {
           initial={{ clipPath: 'inset(0 0 100% 0)' }}
           animate={{ clipPath: 'inset(0 0 0% 0)' }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0 z-0"
         >
           <video
             autoPlay loop muted playsInline
@@ -360,7 +360,7 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f7] via-transparent to-transparent" />
         </motion.div>
 
-        <motion.div style={{ y: heroTextY }} className="max-w-[1400px] mx-auto px-6 w-full py-24">
+        <motion.div style={{ y: heroTextY }} className="relative z-10 max-w-[1400px] mx-auto px-6 w-full py-24">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }} className="text-[#9a8c6e] tracking-[0.45em] uppercase text-[11px] mb-7 font-sans">
             Coleção Inverno 2025
           </motion.p>
