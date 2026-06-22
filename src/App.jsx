@@ -354,7 +354,7 @@ export default function App() {
             poster="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80&auto=format&fit=crop"
             className="w-full h-[120%] object-cover object-center"
           >
-            <source src="https://assets.mixkit.co/videos/50641/50641-1080.mp4" type="video/mp4" />
+            <source src="/hero.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f7] via-[#faf9f7]/65 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f7] via-transparent to-transparent" />
