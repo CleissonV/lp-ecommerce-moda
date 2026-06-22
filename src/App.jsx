@@ -308,7 +308,10 @@ export default function App() {
       {/* Nav */}
       <nav className={`sticky top-0 z-40 transition-all duration-500 border-b ${scrolled ? 'bg-[#faf9f7]/90 backdrop-blur-md border-[#e8e2d8] py-3.5' : 'bg-transparent border-transparent py-5'}`}>
         <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="font-serif text-2xl text-[#111] italic tracking-wider">LUMIÈRE</a>
+          <a href="#" className="flex items-center gap-2.5 font-serif text-2xl text-[#111] italic tracking-wider">
+            <svg viewBox="0 0 32 32" className="w-4 h-4" fill="none" stroke="#9a8c6e" strokeWidth="1.6"><path d="M16 4l12 12-12 12L4 16z" /></svg>
+            <span>LUMIÈRE</span>
+          </a>
           <div className="hidden md:flex items-center gap-9">
             {navLinks.map(item => (
               <a key={item} href="#" className="group relative text-[11px] tracking-[0.2em] uppercase text-[#5a564e] font-sans">
