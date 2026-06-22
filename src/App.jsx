@@ -349,8 +349,14 @@ export default function App() {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 -z-10"
         >
-          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80&auto=format&fit=crop" alt="LUMIÈRE editorial" className="w-full h-[120%] object-cover object-center" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f7] via-[#faf9f7]/70 to-[#faf9f7]/10" />
+          <video
+            autoPlay loop muted playsInline
+            poster="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80&auto=format&fit=crop"
+            className="w-full h-[120%] object-cover object-center"
+          >
+            <source src="https://assets.mixkit.co/videos/50641/50641-1080.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f7] via-[#faf9f7]/65 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f7] via-transparent to-transparent" />
         </motion.div>
 
